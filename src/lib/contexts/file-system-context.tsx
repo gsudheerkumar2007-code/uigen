@@ -77,7 +77,7 @@ export function FileSystemProvider({
         }
       }
     }
-  }, [selectedFile, fileSystem, refreshTrigger]);
+  }, [selectedFile, refreshTrigger]); // Removed fileSystem as it's a stable reference
 
   const createFile = useCallback(
     (path: string, content: string = "") => {

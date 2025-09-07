@@ -96,7 +96,7 @@ export function PreviewFrame() {
     };
 
     updatePreview();
-  }, [refreshTrigger, getAllFiles, entryPoint, error, isFirstLoad]);
+  }, [refreshTrigger, entryPoint, getAllFiles]); // getAllFiles is stable from useCallback
 
   if (error) {
     if (error === "firstLoad") {

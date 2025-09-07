@@ -8,11 +8,22 @@ import { cn } from "@/lib/utils"
 
 function ResizablePanelGroup({
   className,
+  id,
   ...props
 }: React.ComponentProps<typeof ResizablePrimitive.PanelGroup>) {
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
+
   return (
     <ResizablePrimitive.PanelGroup
-      data-slot="resizable-panel-group"
+      id={id || `resizable-group-${Math.random().toString(36).substr(2, 9)}`}
       className={cn(
         "flex h-full w-full data-[panel-group-direction=vertical]:flex-col",
         className
@@ -23,9 +34,13 @@ function ResizablePanelGroup({
 }
 
 function ResizablePanel({
+  id,
   ...props
 }: React.ComponentProps<typeof ResizablePrimitive.Panel>) {
-  return <ResizablePrimitive.Panel data-slot="resizable-panel" {...props} />
+  return <ResizablePrimitive.Panel 
+    id={id || `resizable-panel-${Math.random().toString(36).substr(2, 9)}`}
+    {...props} 
+  />
 }
 
 function ResizableHandle({
